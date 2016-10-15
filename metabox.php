@@ -22,26 +22,25 @@ function event_meta_box_render($object, $box) {
   <?php wp_nonce_field(basename(__FILE__), 'np-event-info-nonce'); ?>
   <p>
     <!-- Start date field -->
-    <label for="np-event-start-date">Start and time</label>
+    <label for="np-event-start-date">Start date and time</label>
     <br>
     <input type="datetime-local" name="np-event-start-date" id="np-event-start-date"
       value="<?php echo esc_attr(date('Y-m-d\TH:i:s', intval(get_post_meta($object->ID, 'events_date_start_epoque', true)))); ?>"/>
-    <br>
-
+  </p>
+  <p>
     <!-- End date field -->
     <label for="np-event-end-date">End date and time</label>
     <br />
     <input type="datetime-local" name="np-event-end-date" id="np-event-end-date"
       value="<?php echo esc_attr(date('Y-m-d\TH:i:s', intval(get_post_meta($object->ID, 'events_date_end_epoque', true)))); ?>"/>
-    <br>
-
+  </p>
+  <p>
     <!-- Display time checkbox -->
-    <label for="np-event-disp-time">Display time?</label>
-    <br />
     <input type="checkbox" name="np-event-disp-time" id="np-event-disp-time"
       value="true" <?php if(get_post_meta($object->ID, 'events_display_time', true) == 'true') echo 'checked'; ?>/>
-    <br>
-
+    <label for="np-event-disp-time">Display time?</label>
+  </p>
+  <p>
     <!-- Location checkbox -->
     <label for="np-event-location">Location</label>
     <br />
