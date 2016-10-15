@@ -102,4 +102,6 @@ function locations_register() {
 	register_post_type('locations', $args_locations);
 }
 
+require_once "metabox.php";
+
 ?>
