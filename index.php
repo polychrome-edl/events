@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Merisi
-Description: Merisi is a event management plugin for WordPress. It is developped for a French cultural assocation called Polychrome. It was named after Michelangelo Merisi da Caravaggio.
+Description: Merisi is an event management plugin for WordPress. It is developped for a French cultural assocation called Polychrome. It was named after Michelangelo Merisi da Caravaggio.
 Version: v0.1
 Author: Anatole Divoux
 Author URI: http://github.com/polychrome-edl

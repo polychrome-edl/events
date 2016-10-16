@@ -1,6 +1,6 @@
 # Merisi
 
-Merisi is a event management plugin for WordPress. It is developped for a French
+Merisi is an event management plugin for WordPress. It is developped for a French
 cultural assocation called Polychrome. It was named after Michelangelo Merisi da Caravaggio.
 
 The plugin adds two custom post types: events and locations.
