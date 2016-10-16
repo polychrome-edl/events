@@ -1,7 +1,8 @@
 <?php
 /*
-Plugin Name: Polikrom
-Description: Events management for Polychrome. Depends on Advanced Custom Fields.
+Plugin Name: Merisi
+Description: Merisi is a event management plugin for WordPress. It is developped for a French cultural assocation called Polychrome. It was named after Michelangelo Merisi da Caravaggio.
+Version: v0.1
 Author: Anatole Divoux
 Author URI: http://github.com/polychrome-edl
 */
@@ -11,7 +12,13 @@ Author URI: http://github.com/polychrome-edl
  */
 
 /*
-The event post type should have the following custom fields.
+Current defined fields for the event type: (they all start with "events_")
+* date_start_epoque: Unix timestamp of the start date.
+* date_end_epoque: Unix timestamp of the end date.
+* display_time: "true" or "false"; indicates if the time should be displayed.
+* display_end: "true" or "false"; indicates if the end date should be displayed.
+* date_string: Custom string to replace the default generated one.
+* location: Indicates the location of the event.
 */
 
 add_action('init', 'events_register');
