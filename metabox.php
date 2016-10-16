@@ -35,13 +35,26 @@ function event_meta_box_render($object, $box) {
       value="<?php echo esc_attr(date('Y-m-d\TH:i:s', intval(get_post_meta($object->ID, 'events_date_end_epoque', true)))); ?>"/>
   </p>
   <p>
+    <!-- Display end date checkbox -->
+    <input type="checkbox" name="np-event-disp-end" id="np-event-disp-end"
+      value="true" <?php if(get_post_meta($object->ID, 'events_display_end', true) == 'true') echo 'checked'; ?>/>
+    <label for="np-event-disp-end">Display end date?</label>
+  </p>
+  <p>
     <!-- Display time checkbox -->
     <input type="checkbox" name="np-event-disp-time" id="np-event-disp-time"
       value="true" <?php if(get_post_meta($object->ID, 'events_display_time', true) == 'true') echo 'checked'; ?>/>
     <label for="np-event-disp-time">Display time?</label>
   </p>
   <p>
-    <!-- Location checkbox -->
+    <!-- Custom date string text field -->
+    <label for="np-event-date-string">Custom date string</label>
+    <br />
+    <input type="text" name="np-event-date-string" id="np-event-date-string"
+      value="<?php echo esc_attr(get_post_meta($object->ID, 'events_date_string', true)); ?>" placeholder="Leave empty to disable"/>
+  </p>
+  <p>
+    <!-- Location text field -->
     <label for="np-event-location">Location</label>
     <br />
     <input type="text" name="np-event-location" id="np-event-location"
@@ -70,27 +83,27 @@ function event_meta_box_save($post_id, $post) {
   if(isset($_POST['np-event-end-date']))
     save_date($post_id, 'events_date_end_epoque', $_POST['np-event-end-date']);
 
+  // Display end date checkbox
+  if(isset($_POST['np-event-disp-end'])
+    && $_POST['np-event-disp-end'] == 'true')
+    update_post_meta($post_id, 'events_display_end', 'true');
+  else
+    update_post_meta($post_id, 'events_display_time', 'false');
+
   // Display time checkbox
   if(isset($_POST['np-event-disp-time'])
     && $_POST['np-event-disp-time'] == 'true')
-    upsert_post_meta($post_id, 'events_display_time', 'true');
+    update_post_meta($post_id, 'events_display_time', 'true');
   else
-    upsert_post_meta($post_id, 'events_display_time', 'false');
+    update_post_meta($post_id, 'events_display_time', 'false');
+
+  // Custom date string
+  if(isset($_POST['np-event-date-string']))
+    update_post_meta($post_id, 'events_date_string', sanitize_text_field($_POST['np-event-date-string']));
 
   // Location
   if(isset($_POST['np-event-location']))
-    upsert_post_meta($post_id, 'events_location', sanitize_text_field($_POST['np-event-location']));
-}
-
-// Creates or updates a custom field for a given post.
-function upsert_post_meta($post_id, $key, $value) {
-  $old = get_post_meta($post_id, $key, true);
-
-  // If the custom field was not set, create it
-  if($value && $old == '')
-    add_post_meta($post_id, $key, $value);
-  elseif($value && $value != $old)
-    update_post_meta($post_id, $key, $value);
+    update_post_meta($post_id, 'events_location', sanitize_text_field($_POST['np-event-location']));
 }
 
 // Parses a date field value and updates the given key on the given post with
@@ -102,7 +115,7 @@ function save_date($post_id, $key, $value) {
 
   if($date != false) {
     $new = $date->getTimestamp();
-    upsert_post_meta($post_id, $key, $new);
+    update_post_meta($post_id, $key, $new);
   }
 }
 
