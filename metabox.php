@@ -88,7 +88,7 @@ function event_meta_box_save($post_id, $post) {
     && $_POST['np-event-disp-end'] == 'true')
     update_post_meta($post_id, 'events_display_end', 'true');
   else
-    update_post_meta($post_id, 'events_display_time', 'false');
+    update_post_meta($post_id, 'events_display_end', 'false');
 
   // Display time checkbox
   if(isset($_POST['np-event-disp-time'])
