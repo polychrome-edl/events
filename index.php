@@ -33,7 +33,7 @@ function events_register() {
 		'labels' => $labels_events,
 		'description' => 'A custom type that describes an event that will take'.
 			' place or already has.',
-		
+
 		// Available to readers
 		'publicly_queryable' => true,
 		'exclude_from_search' => false,
@@ -45,7 +45,7 @@ function events_register() {
 
 		// Capabilities
 		'capability_type' => 'post',
-		
+
 		// Archiving
 		'has_archive' => true,
 
@@ -55,7 +55,7 @@ function events_register() {
 			'editor',
 			'excerpt',
 			'thumbnail',
-			'custom-fields', 
+			'custom-fields',
 			'comments',
 			'revisions',
 			'page-attributes'
@@ -85,7 +85,7 @@ function locations_register() {
 		'labels' => $labels_locations,
 		'description' => 'A custom type that indicates a location where one or'.
 			' multiple events will take place.',
-		
+
 		// Hidden from readers
 		'publicly_queryable' => false,
 		'exclude_from_search' => true,
@@ -109,6 +109,7 @@ function locations_register() {
 	register_post_type('locations', $args_locations);
 }
 
-require_once "metabox.php";
+require_once 'taxonomy.php';
+require_once 'metabox.php';
 
 ?>
